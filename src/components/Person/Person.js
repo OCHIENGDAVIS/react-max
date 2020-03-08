@@ -1,5 +1,5 @@
 import React from 'react'
-
+import classes from './Person.module.css'
 const Person = ({id, name, age, deletePerson, change})=>{
 	const handleDel = ()=>{
 		deletePerson(id)
@@ -15,7 +15,7 @@ const Person = ({id, name, age, deletePerson, change})=>{
 	
 	
     return (
-        <div>
+        <div className={classes.Person}>
             <h3>{name}</h3>
             <p>{age}</p>
 			<input type='text' placeholder='Change Name' onChange={changeHandler}/>

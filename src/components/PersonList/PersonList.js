@@ -1,5 +1,5 @@
 import React from 'react'
-import './PersonList.css'
+// import './PersonList.css'
 import Person from '../Person/Person'
 
 const  PersonList = (props)=>{

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import   './App.css';
+import Cockpit from './components/Cockpi/Cockpit'
 import PersonList from './components/PersonList/PersonList'
+import Header from './components/Header/Header'
+import Img from './assets/imgs/palma.jpg'
 
 
 class  App extends Component {
@@ -20,10 +23,14 @@ class  App extends Component {
       }
     })
   }
-  handleShowPerson = ()=>{
+  handleShowPerson = (e)=>{
+	  const people = e.target.value
+	  console.log(people)
+	  console.log('Did anything happen here!!')
     this.setState((prevState)=>({showPerson : !prevState.showPerson}))
   }
   handleDelete = (id)=>{
+	  
 	  this.setState((prevState)=>{
 		  return {
 			...prevState,
@@ -35,32 +42,24 @@ class  App extends Component {
 	console.log(name)
   }
   render(){
-    const styles = {
-      background : 'steelblue',
-      font : 'inherit',
-      border : '1px solid blue',
-      padding : '8px',
-      color : 'white',
-      border : 'none',
-      marginTop : '12px',
-      cursor : 'pointer'
-    }
     let show = null
     if(this.state.showPerson && this.state.persons.length > 1){
       show = (
           <div>
-          <h1><button onClick={this.nameHandler}> SwitchNames</button></h1>
           <PersonList persons={this.state.persons} deletePerson={this.handleDelete} change={this.handleChangeName} />
 
         
         </div>
       )
-    }
+	}
+
     return (
-      <div className="App" >
-          <h1>Hi, Iam a react app</h1>
-          <p>Welcone to the party of geeks</p>
-          <button onClick={this.handleShowPerson}>Toggle  person</button>
+		
+      <div className={`App`} >
+		  <Header />
+          <Cockpit />
+          <button onClick={this.handleShowPerson} >Toggle  person</button>  <br />
+		  <img src={Img} />
           {
             show
           }
