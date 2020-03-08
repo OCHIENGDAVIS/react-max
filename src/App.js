@@ -6,9 +6,9 @@ import PersonList from './components/PersonList/PersonList'
 class  App extends Component {
   state = {
     persons : [
-      {name : 'mike', age : 30},
-      {name : 'John', age : 40},
-      {name : 'Mark', age : 20}
+      {id: 1,name : 'mike', age : 30},
+      {id: 2, name : 'John', age : 40},
+      {id: 3, name : 'Mark', age : 20}
     ],
     showPerson : false
   }
@@ -23,6 +23,17 @@ class  App extends Component {
   handleShowPerson = ()=>{
     this.setState((prevState)=>({showPerson : !prevState.showPerson}))
   }
+  handleDelete = (id)=>{
+	  this.setState((prevState)=>{
+		  return {
+			...prevState,
+			persons : prevState.persons.filter((el)=>el.id !== id)
+		  }
+	  })
+  }
+  handleChangeName = (name)=>{
+	console.log(name)
+  }
   render(){
     const styles = {
       background : 'steelblue',
@@ -35,11 +46,11 @@ class  App extends Component {
       cursor : 'pointer'
     }
     let show = null
-    if(this.state.showPerson){
+    if(this.state.showPerson && this.state.persons.length > 1){
       show = (
           <div>
           <h1><button onClick={this.nameHandler}> SwitchNames</button></h1>
-          <PersonList persons={this.state.persons} />
+          <PersonList persons={this.state.persons} deletePerson={this.handleDelete} change={this.handleChangeName} />
 
         
         </div>

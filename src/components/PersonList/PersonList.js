@@ -10,7 +10,7 @@ const  PersonList = (props)=>{
         <div className="Person">
             {
                 props.persons.map((person, key)=>{
-                    return <Person {...person} key={key}/>
+                    return <Person {...person} key={key} deletePerson={props.deletePerson} change={props.change}/>
                 })
             }
             
